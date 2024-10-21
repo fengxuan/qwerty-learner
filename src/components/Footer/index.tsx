@@ -145,8 +145,14 @@ const Footer: React.FC = () => {
       </InfoPanel>
 
       <footer className="mb-1 mt-4 flex w-full items-center justify-center gap-2.5 text-sm ease-in" onClick={(e) => e.currentTarget.blur()}>
-        <a href="https://qwerty.kaiyi.cool" target="_blank" rel="noreferrer" aria-label="前往 Qwerty Learner 官方主页">
-        Qwerty Learner官方主页
+        <a
+          className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          href="https://qwerty.kaiyi.cool"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="前往 Qwerty Learner 官方主页"
+        >
+          前往 Qwerty Learner 官方主页
         </a>
       </footer>
       <footer className="mb-1 mt-4 flex w-full items-center justify-center gap-2.5 text-sm ease-in" onClick={(e) => e.currentTarget.blur()}>
