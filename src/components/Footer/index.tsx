@@ -200,7 +200,6 @@ const Footer: React.FC = () => {
         >
           AI Chat
         </a>
-        
       </footer>
     </>
   )
