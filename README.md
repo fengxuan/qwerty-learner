@@ -297,4 +297,3 @@ JS API 来自于[react-code-game](https://github.com/webzhd/react-code-game) ，
 ## 🌟 Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/Realkai42/qwerty-learner.svg)](https://starchart.cc/Realkai42/qwerty-learner)
-
