@@ -50,9 +50,10 @@ function Root() {
       <BrowserRouter basename={REACT_APP_DEPLOY_ENV === 'pages' ? '/qwerty-learner' : ''}>
         <Suspense fallback={<Loading />}>
           <Routes>
-            {isMobile ? (
-              <Route path="/*" element={<Navigate to="/mobile" />} />
-            ) : (
+            {
+              // isMobile ? (
+              //   <Route path="/*" element={<Navigate to="/mobile" />} />
+              // ) : (
               <>
                 <Route index element={<TypingPage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
@@ -60,7 +61,8 @@ function Root() {
                 <Route path="/error-book" element={<ErrorBook />} />
                 <Route path="/*" element={<Navigate to="/" />} />
               </>
-            )}
+              // )
+            }
             <Route path="/mobile" element={<MobilePage />} />
           </Routes>
         </Suspense>

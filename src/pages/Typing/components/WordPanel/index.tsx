@@ -8,8 +8,9 @@ import WordComponent from './components/Word'
 import { usePrefetchPronunciationSound } from '@/hooks/usePronunciation'
 import { isReviewModeAtom, isShowPrevAndNextWordAtom, loopWordConfigAtom, phoneticConfigAtom, reviewModeInfoAtom } from '@/store'
 import type { Word } from '@/typings'
+import { IsDesktop } from '@/utils'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 export default function WordPanel() {
@@ -25,6 +26,7 @@ export default function WordPanel() {
 
   const setReviewModeInfo = useSetAtom(reviewModeInfoAtom)
   const isReviewMode = useAtomValue(isReviewModeAtom)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
 
   const prevIndex = useMemo(() => {
     const newIndex = state.chapterData.index - 1
@@ -52,6 +54,7 @@ export default function WordPanel() {
   )
 
   const onFinish = useCallback(() => {
+    //setIsMobile(true)
     if (state.chapterData.index < state.chapterData.words.length - 1 || currentWordExerciseCount < loopWordTimes - 1) {
       // 用户完成当前单词
       if (currentWordExerciseCount < loopWordTimes - 1) {
@@ -148,13 +151,29 @@ export default function WordPanel() {
     return isShowTranslation || state.isTransVisible
   }, [isShowTranslation, state.isTransVisible])
 
+  const [shuffled, setShuffled] = useState<string[]>([])
+  const [randomNumbers, setRandomNumbers] = useState<number[]>([])
+
+  useEffect(() => {
+    if (currentWord) {
+      const letters = currentWord.name.split('')
+      const shuffledLetters = [...letters].sort(() => Math.random() - 0.5)
+      setShuffled(shuffledLetters)
+      const newRandomNumbers = shuffledLetters.map(() => Math.floor(Math.random() * 5) + 1)
+      setRandomNumbers(newRandomNumbers)
+    } else {
+      setShuffled([])
+      setRandomNumbers([])
+    }
+  }, [currentWord?.name]) // Only re-run when currentWord.name changes
+
   return (
     <div className="container flex h-full w-full flex-col items-center justify-center">
       <div className="container flex h-24 w-full shrink-0 grow-0 justify-between px-12 pt-10">
         {isShowPrevAndNextWord && state.isTyping && (
           <>
-            <PrevAndNextWord type="prev" />
-            <PrevAndNextWord type="next" />
+            {!isMobile && <PrevAndNextWord type="prev" />}
+            {!isMobile && <PrevAndNextWord type="next" />}
           </>
         )}
       </div>
@@ -183,6 +202,38 @@ export default function WordPanel() {
           </div>
         )}
       </div>
+
+      {!IsDesktop() && currentWord && (
+        <div className="mb-10 mt-4 w-screen text-center text-sm text-gray-500">
+          {shuffled.map((letter, index) => {
+            return (
+              <span
+                key={`${currentWord.name}-${index}`}
+                onClick={(e) => {
+                  console.log(letter)
+                  const keyboardEvent = new KeyboardEvent('keydown', {
+                    key: letter,
+                    bubbles: true,
+                    cancelable: true,
+                  })
+                  document.dispatchEvent(keyboardEvent)
+                  e.currentTarget.style.opacity = '0.5'
+                }}
+                className="cursor-pointer rounded border px-[25px] text-[60px]"
+                style={{
+                  backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index]}.png)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  color: 'black',
+                }}
+              >
+                {letter}
+              </span>
+            )
+          })}
+        </div>
+      )}
+
       <Progress className={`mb-10 mt-auto ${state.isTyping ? 'opacity-100' : 'opacity-0'}`} />
     </div>
   )
