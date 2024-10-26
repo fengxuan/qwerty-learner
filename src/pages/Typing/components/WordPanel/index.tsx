@@ -236,7 +236,7 @@ export default function WordPanel() {
             })}
           </div>
 
-          <div className="mb-9 mt-2 w-screen text-center text-sm text-gray-500">
+          <div className="mb-9 mt-1 w-screen text-center text-sm text-gray-500">
             {shuffled.slice(5).map((letter, index) => {
               return (
                 <span

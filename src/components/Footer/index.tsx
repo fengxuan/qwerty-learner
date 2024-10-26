@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://qwerty.kaiyi.cool"
-          target="_blank"
+          // target="_blank"
           rel="noreferrer"
           aria-label="前往 Qwerty Learner 官方主页"
         >
