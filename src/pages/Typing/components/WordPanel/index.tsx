@@ -207,7 +207,7 @@ export default function WordPanel() {
 
       {!IsDesktop() && currentWord && (
         <>
-          <div className="mb-9 mt-4 w-screen text-center text-sm text-gray-500">
+          <div className="mb-10 mt-4 w-screen text-center text-sm text-gray-500">
             {shuffled.slice(0, 5).map((letter, index) => {
               return (
                 <span
@@ -236,7 +236,7 @@ export default function WordPanel() {
             })}
           </div>
 
-          <div className="mb-9 w-screen text-center text-sm text-gray-500">
+          <div className="mb-9 mt-2 w-screen text-center text-sm text-gray-500">
             {shuffled.slice(5).map((letter, index) => {
               return (
                 <span
