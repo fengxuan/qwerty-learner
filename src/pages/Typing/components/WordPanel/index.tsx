@@ -156,8 +156,8 @@ export default function WordPanel() {
 
   useEffect(() => {
     if (currentWord) {
-      const letters = currentWord.name.split('')
-      const shuffledLetters = [...letters].sort(() => Math.random() - 0.5)
+      const uniqueLetters = Array.from(new Set(currentWord.name.split('')))
+      const shuffledLetters = [...uniqueLetters].sort((a, b) => a.localeCompare(b))
       setShuffled(shuffledLetters)
       const newRandomNumbers = shuffledLetters.map(() => Math.floor(Math.random() * 5) + 1)
       setRandomNumbers(newRandomNumbers)
@@ -169,14 +169,16 @@ export default function WordPanel() {
 
   return (
     <div className="container flex h-full w-full flex-col items-center justify-center">
-      <div className="container flex h-24 w-full shrink-0 grow-0 justify-between px-12 pt-10">
-        {isShowPrevAndNextWord && state.isTyping && (
-          <>
-            {!isMobile && <PrevAndNextWord type="prev" />}
-            {!isMobile && <PrevAndNextWord type="next" />}
-          </>
-        )}
-      </div>
+      {!isMobile && (
+        <div className="container flex h-24 w-full shrink-0 grow-0 justify-between px-12 pt-10">
+          {isShowPrevAndNextWord && state.isTyping && (
+            <>
+              <PrevAndNextWord type="prev" />
+              <PrevAndNextWord type="next" />
+            </>
+          )}
+        </div>
+      )}
       <div className="container flex flex-grow flex-col items-center justify-center">
         {currentWord && (
           <div className="relative flex w-full justify-center">
@@ -205,8 +207,8 @@ export default function WordPanel() {
 
       {!IsDesktop() && currentWord && (
         <>
-          <div className="mb-10 mt-4 w-screen text-center text-sm text-gray-500">
-            {shuffled.slice(0, 6).map((letter, index) => {
+          <div className="mb-9 mt-4 w-screen text-center text-sm text-gray-500">
+            {shuffled.slice(0, 5).map((letter, index) => {
               return (
                 <span
                   key={`${currentWord.name}-${index}`}
@@ -234,11 +236,11 @@ export default function WordPanel() {
             })}
           </div>
 
-          <div className="w-screen text-center text-sm text-gray-500">
-            {shuffled.slice(6).map((letter, index) => {
+          <div className="mb-9 w-screen text-center text-sm text-gray-500">
+            {shuffled.slice(5).map((letter, index) => {
               return (
                 <span
-                  key={`${currentWord.name}-${index + 6}`}
+                  key={`${currentWord.name}-${index + 5}`}
                   onClick={(e) => {
                     console.log(letter)
                     const keyboardEvent = new KeyboardEvent('keydown', {
@@ -251,7 +253,7 @@ export default function WordPanel() {
                   }}
                   className="cursor-pointer rounded border px-[25px] text-[60px]"
                   style={{
-                    backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index + 6]}.png)`,
+                    backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index + 5]}.png)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     color: 'black',
