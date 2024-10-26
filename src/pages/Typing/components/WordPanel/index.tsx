@@ -204,34 +204,65 @@ export default function WordPanel() {
       </div>
 
       {!IsDesktop() && currentWord && (
-        <div className="mb-10 mt-4 w-screen text-center text-sm text-gray-500">
-          {shuffled.map((letter, index) => {
-            return (
-              <span
-                key={`${currentWord.name}-${index}`}
-                onClick={(e) => {
-                  console.log(letter)
-                  const keyboardEvent = new KeyboardEvent('keydown', {
-                    key: letter,
-                    bubbles: true,
-                    cancelable: true,
-                  })
-                  document.dispatchEvent(keyboardEvent)
-                  e.currentTarget.style.opacity = '0.5'
-                }}
-                className="cursor-pointer rounded border px-[25px] text-[60px]"
-                style={{
-                  backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index]}.png)`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  color: 'black',
-                }}
-              >
-                {letter}
-              </span>
-            )
-          })}
-        </div>
+        <>
+          <div className="mb-10 mt-4 w-screen text-center text-sm text-gray-500">
+            {shuffled.slice(0, 6).map((letter, index) => {
+              return (
+                <span
+                  key={`${currentWord.name}-${index}`}
+                  onClick={(e) => {
+                    console.log(letter)
+                    const keyboardEvent = new KeyboardEvent('keydown', {
+                      key: letter,
+                      bubbles: true,
+                      cancelable: true,
+                    })
+                    document.dispatchEvent(keyboardEvent)
+                    e.currentTarget.style.opacity = '0.5'
+                  }}
+                  className="cursor-pointer rounded border px-[25px] text-[60px]"
+                  style={{
+                    backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index]}.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    color: 'black',
+                  }}
+                >
+                  {letter}
+                </span>
+              )
+            })}
+          </div>
+
+          <div className="w-screen text-center text-sm text-gray-500">
+            {shuffled.slice(6).map((letter, index) => {
+              return (
+                <span
+                  key={`${currentWord.name}-${index + 6}`}
+                  onClick={(e) => {
+                    console.log(letter)
+                    const keyboardEvent = new KeyboardEvent('keydown', {
+                      key: letter,
+                      bubbles: true,
+                      cancelable: true,
+                    })
+                    document.dispatchEvent(keyboardEvent)
+                    e.currentTarget.style.opacity = '0.5'
+                  }}
+                  className="cursor-pointer rounded border px-[25px] text-[60px]"
+                  style={{
+                    backgroundImage: `url(https://mf.serviceme.lol/cornor-20/kong${randomNumbers[index + 6]}.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    color: 'black',
+                  }}
+                >
+                  {letter}
+                </span>
+              )
+            })}
+          </div>
+        </>
       )}
 
       <Progress className={`mb-10 mt-auto ${state.isTyping ? 'opacity-100' : 'opacity-0'}`} />
