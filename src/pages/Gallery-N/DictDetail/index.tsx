@@ -67,20 +67,22 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
   )
 
   return (
-    <div className="flex flex-col rounded-[4rem] px-4 py-3 pl-5 text-gray-800 dark:text-gray-300">
-      <div className="text relative flex h-40 flex-col gap-2">
-        <h3 className="text-2xl font-semibold">{dict.name}</h3>
-        <p className="mt-1">{dict.chapterCount} 章节</p>
-        <p>共 {dict.length} 词</p>
-        <p>{dict.description}</p>
-        <div className="absolute bottom-5 right-4">
+    <div className="xl:rounded-4xl flex flex-col rounded-lg px-2 py-2 pl-3 text-gray-800 dark:text-gray-300 sm:rounded-xl sm:px-3 sm:py-3 sm:pl-4 md:rounded-2xl md:px-4 md:pl-5 lg:rounded-3xl lg:px-5 lg:py-4 lg:pl-6 xl:px-6 xl:py-5 xl:pl-7">
+      <div className="text relative flex min-h-[6rem] flex-col gap-1 sm:min-h-[8rem] sm:gap-2 md:min-h-[10rem] lg:min-h-[12rem] xl:min-h-[14rem]">
+        <h3 className="text-base font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">{dict.name}</h3>
+        <p className="mt-0.5 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">{dict.chapterCount} 章节</p>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">共 {dict.length} 词</p>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">{dict.description}</p>
+        <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 md:bottom-3 md:right-3 lg:bottom-4 lg:right-4 xl:bottom-5 xl:right-5">
           <ToggleGroup type="single" value={curTab} onValueChange={handleTabChange}>
             <ToggleGroupItem
               value={Tab.Chapters}
               disabled={curTab === Tab.Chapters}
-              className={`${curTab === Tab.Chapters ? 'text-primary-foreground bg-primary' : ''} disabled:opacity-100`}
+              className={`${
+                curTab === Tab.Chapters ? 'text-primary-foreground bg-primary' : ''
+              } text-[8px] disabled:opacity-100 sm:text-[10px] md:text-xs lg:text-sm xl:text-base`}
             >
-              <MajesticonsPaperFoldTextLine className="mr-1.5 text-gray-500" />
+              <MajesticonsPaperFoldTextLine className="mr-0.5 text-gray-500 sm:mr-1 md:mr-1.5 lg:mr-2 xl:mr-2.5" />
               章节选择
             </ToggleGroupItem>
             {errorWordData.length > 0 && (
@@ -88,17 +90,21 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
                 <ToggleGroupItem
                   value={Tab.Errors}
                   disabled={curTab === Tab.Errors}
-                  className={`${curTab === Tab.Errors ? 'text-primary-foreground bg-primary' : ''} disabled:opacity-100`}
+                  className={`${
+                    curTab === Tab.Errors ? 'text-primary-foreground bg-primary' : ''
+                  } text-[8px] disabled:opacity-100 sm:text-[10px] md:text-xs lg:text-sm xl:text-base`}
                 >
-                  <IcOutlineCollectionsBookmark className="mr-1.5 text-gray-500" />
+                  <IcOutlineCollectionsBookmark className="mr-0.5 text-gray-500 sm:mr-1 md:mr-1.5 lg:mr-2 xl:mr-2.5" />
                   查看错题
                 </ToggleGroupItem>
                 <ToggleGroupItem
                   value={Tab.Review}
                   disabled={curTab === Tab.Review}
-                  className={`${curTab === Tab.Review ? 'text-primary-foreground bg-primary' : ''} disabled:opacity-100`}
+                  className={`${
+                    curTab === Tab.Review ? 'text-primary-foreground bg-primary' : ''
+                  } text-[8px] disabled:opacity-100 sm:text-[10px] md:text-xs lg:text-sm xl:text-base`}
                 >
-                  <PajamasReviewList className="mr-1.5 text-gray-500" />
+                  <PajamasReviewList className="mr-0.5 text-gray-500 sm:mr-1 md:mr-1.5 lg:mr-2 xl:mr-2.5" />
                   错题回顾
                 </ToggleGroupItem>
               </>
@@ -107,10 +113,13 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
         </div>
       </div>
       <div className="flex pl-0">
-        <Tabs value={curTab} className="h-[30rem] w-full ">
-          <TabsContent value={Tab.Chapters} className="h-full ">
-            <ScrollArea className="h-[30rem] ">
-              <div className="flex w-full flex-wrap gap-3">
+        <Tabs
+          value={curTab}
+          className="h-[calc(100vh-14rem)] w-full sm:h-[calc(100vh-16rem)] md:h-[calc(100vh-18rem)] lg:h-[calc(100vh-20rem)] xl:h-[calc(100vh-22rem)]"
+        >
+          <TabsContent value={Tab.Chapters} className="h-full">
+            <ScrollArea className="h-full">
+              <div className="flex w-full flex-wrap gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
                 {range(0, dict.chapterCount, 1).map((index) => (
                   <Chapter
                     key={`${dict.id}-${index}`}

@@ -63,24 +63,27 @@ export default function GalleryPage() {
   return (
     <Layout>
       <GalleryContext.Provider value={{ state: galleryState, setState: setGalleryState }}>
-        <div className="relative mb-auto mt-auto flex w-full flex-1 flex-col overflow-y-auto pl-20">
-          <IconX className="absolute right-20 top-10 mr-2 h-7 w-7 cursor-pointer text-gray-400" onClick={onBack} />
-          <div className="mt-20 flex w-full flex-1 flex-col items-center justify-center overflow-y-auto">
-            <div className="flex h-full flex-col overflow-y-auto">
+        <div className="relative flex w-full flex-1 flex-col overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20">
+          <IconX
+            className="absolute right-4 top-4 h-7 w-7 cursor-pointer text-gray-400 sm:right-6 sm:top-6 md:right-8 md:top-8 lg:right-10 lg:top-10 xl:right-20 xl:top-10"
+            onClick={onBack}
+          />
+          <div className="mt-10 flex w-full flex-1 flex-col items-center justify-center overflow-y-auto sm:mt-16 md:mt-20">
+            <div className="flex h-full w-full max-w-7xl flex-col overflow-y-auto">
               <div className="flex h-20 w-full items-center justify-between pb-6">
                 <LanguageTabSwitcher />
                 <DictRequest />
               </div>
               <ScrollArea.Root className="flex-1 overflow-y-auto">
-                <ScrollArea.Viewport className="h-full w-full ">
-                  <div className="mr-4 flex flex-1 flex-col items-start justify-start gap-14 overflow-y-auto">
+                <ScrollArea.Viewport className="h-full w-full">
+                  <div className="mr-4 flex flex-1 flex-col items-start justify-start gap-8 overflow-y-auto sm:gap-10 md:gap-12 lg:gap-14">
                     {groupedByCategoryAndTag.map(([category, groupeByTag]) => (
                       <DictionaryGroup key={category} groupedDictsByTag={groupeByTag} />
                     ))}
                   </div>
-                  <div className="flex items-center justify-center pb-10 pt-[20rem] text-gray-500">
-                    <IconInfo className="mr-1 h-5 w-5" />
-                    <p className="mr-5 w-10/12 text-xs">
+                  <div className="flex items-center justify-center pb-10 pt-20 text-gray-500 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-40">
+                    <IconInfo className="mr-1 h-4 w-4 sm:h-5 sm:w-5" />
+                    <p className="mr-5 w-10/12 text-xs sm:text-sm">
                       本项目的词典数据来自多个开源项目以及社区贡献者的无偿提供。我们深感感激并尊重每一位贡献者的知识产权。
                       这些数据仅供个人学习和研究使用，严禁用于任何商业目的。如果你是数据的版权所有者，并且认为我们的使用方式侵犯了你的权利，请通过网站底部的电子邮件与我们联系。一旦收到有效的版权投诉，我们将在最短的时间内删除相关内容或寻求必要的许可。
                       同时，我们也鼓励所有使用这些数据的人尊重版权所有者的权利，并且在使用这些数据时遵守所有相关的法律和规定。
@@ -88,12 +91,8 @@ export default function GalleryPage() {
                     </p>
                   </div>
                 </ScrollArea.Viewport>
-                <ScrollArea.Scrollbar className="flex touch-none select-none bg-transparent " orientation="vertical"></ScrollArea.Scrollbar>
+                <ScrollArea.Scrollbar className="flex touch-none select-none bg-transparent" orientation="vertical"></ScrollArea.Scrollbar>
               </ScrollArea.Root>
-              {/* todo: 增加导航 */}
-              {/* <div className="mt-20 h-40 w-40 text-center ">
-                <CategoryNavigation />
-              </div> */}
             </div>
           </div>
         </div>

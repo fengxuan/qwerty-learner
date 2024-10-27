@@ -135,13 +135,17 @@ const App: React.FC = () => {
       {state.isFinished && <ResultScreen />}
       <Layout>
         <Header>
-          {!isMobile && (
+          {
             <>
               <DictChapterButton />
-              <PronunciationSwitcher />
-              <Switcher />
+              {IsDesktop() && (
+                <>
+                  <PronunciationSwitcher />
+                  <Switcher />
+                </>
+              )}
             </>
-          )}
+          }
           <StartButton isLoading={isLoading} />
           <Tooltip content="跳过该词">
             <button
