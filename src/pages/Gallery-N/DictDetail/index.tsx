@@ -46,7 +46,6 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
     },
     [deleteWordRecord, dict.id],
   )
-  //
 
   const onChangeChapter = useCallback(
     (index: number) => {
