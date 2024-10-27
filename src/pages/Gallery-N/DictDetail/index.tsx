@@ -46,6 +46,7 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
     },
     [deleteWordRecord, dict.id],
   )
+  //
 
   const onChangeChapter = useCallback(
     (index: number) => {
@@ -119,7 +120,7 @@ export default function DictDetail({ dictionary: dict }: { dictionary: Dictionar
         >
           <TabsContent value={Tab.Chapters} className="h-full">
             <ScrollArea className="h-full">
-              <div className="flex w-full flex-wrap gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
+              <div className="xs:grid-cols-3 grid grid-cols-2 gap-1 sm:grid-cols-4 sm:gap-1.5 md:grid-cols-5 md:gap-2 lg:grid-cols-6 lg:gap-2.5 xl:grid-cols-7 xl:gap-3">
                 {range(0, dict.chapterCount, 1).map((index) => (
                   <Chapter
                     key={`${dict.id}-${index}`}
