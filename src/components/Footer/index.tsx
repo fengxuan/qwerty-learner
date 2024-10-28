@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
         <br />
       </InfoPanel>
 
-      <footer className="mb-1 mt-4 flex w-full items-center justify-center gap-2.5 text-sm ease-in" onClick={(e) => e.currentTarget.blur()}>
+      {/* <footer className="mb-1 mt-4 flex w-full items-center justify-center gap-2.5 text-sm ease-in" onClick={(e) => e.currentTarget.blur()}>
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://qwerty.kaiyi.cool"
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
         >
           前往 Qwerty Learner 官方主页
         </a>
-      </footer>
+      </footer> */}
       <footer className="mb-1 mt-4 flex w-full items-center justify-center gap-2.5 text-sm ease-in" onClick={(e) => e.currentTarget.blur()}>
         <a href="https://github.com/fengxuan/qwerty-learner" target="_blank" rel="noreferrer" aria-label="前往 GitHub 项目主页">
           <IconGithub fontSize={15} className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100" />
@@ -162,7 +162,6 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://babelchat.lat"
-          target="_blank"
           rel="noreferrer"
         >
           BabelChat
@@ -170,7 +169,6 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://q.spell.lat"
-          target="_blank"
           rel="noreferrer"
         >
           Q.Spell
@@ -178,7 +176,6 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://apps.apple.com/id/app/spell-learn/id6736675588"
-          target="_blank"
           rel="noreferrer"
         >
           Spell App
@@ -186,7 +183,6 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://apps.apple.com/id/app/babelchat/id6476923320"
-          target="_blank"
           rel="noreferrer"
         >
           Babel Chat App
@@ -195,7 +191,6 @@ const Footer: React.FC = () => {
         <a
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           href="https://aichat.lat"
-          target="_blank"
           rel="noreferrer"
         >
           AI Chat
